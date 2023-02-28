@@ -32,10 +32,10 @@ def is_node_running(node_name):
 def listener():
     rospy.init_node('node_onoff_mgr')
 
-    # topic : vision_onoff_cmd
+    # topic : node_onoff_cmd
     # msg type : std_msgs/String
     # data : {target_node_name}
-    rospy.Subscriber('vision_onoff_cmd', String, callback_vision_onoff_cmd)
+    rospy.Subscriber('node_onoff_cmd', String, callback_vision_onoff_cmd)
     rospy.Subscriber('is_node_running', String, callback_is_node_running)
     rospy.spin()
 
