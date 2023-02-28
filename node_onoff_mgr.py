@@ -10,9 +10,8 @@ def callback_vision_onoff_cmd(data):
         kill_cmd = 'rosnode kill ' + node_name
         subprocess.call(kill_cmd.split())
     # turn on
-    subprocess.Popen('python my_vision.py'.split())
+    subprocess.Popen('rosrun plaif_vision_server plaif_vision_node.py --config_path /home/plaif2/catkin_ws/config/bracket/config.yaml --node_id 0'.split())
     print('callback_vision_onoff_cmd terminates..!')
-
 
 def callback_is_node_running(data):
     node_name = data.data
@@ -30,7 +29,7 @@ def is_node_running(node_name):
     return True if node_name in output else False
 
 def listener():
-    rospy.init_node('node_onoff_mgr')
+    rospy.init_node('plaif_node_onoff_mgr')
 
     # topic : node_onoff_cmd
     # msg type : std_msgs/String
@@ -40,5 +39,5 @@ def listener():
     rospy.spin()
 
 if __name__ == '__main__':
-    print('start node_onoff_mgr..!')
+    print('start plaif_node_onoff_mgr..!')
     listener()
